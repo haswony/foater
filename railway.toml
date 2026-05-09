@@ -1,0 +1,11 @@
+[build]
+builder = "NIXPACKS"
+
+[phases.setup]
+nixPkgs = ["php", "phpExtensions.sqlite3", "phpExtensions.pdo_sqlite", "phpExtensions.mbstring", "phpExtensions.curl"]
+
+[phases.build]
+cmds = ["mkdir -p database"]
+
+[start]
+cmd = "php -S 0.0.0.0:$PORT -t public"
