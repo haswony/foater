@@ -8,6 +8,9 @@ RUN apt-get update && apt-get install -y \
     zip \
     && docker-php-ext-install pdo pdo_sqlite mbstring zip
 
+# تعطيل MPMs المتعارضة وتفعيل prefork
+RUN a2dismod mpm_event mpm_worker && a2enmod mpm_prefork
+
 # تفعيل mod_rewrite
 RUN a2enmod rewrite
 
