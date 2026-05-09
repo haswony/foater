@@ -8,16 +8,11 @@ RUN apt-get update && apt-get install -y \
     zip \
     && docker-php-ext-install pdo pdo_sqlite mbstring zip
 
-# تعطيل MPMs المتعارضة قبل تفعيل أي MPM
-RUN rm /etc/apache2/mods-enabled/mpm_event.load \
-    && rm /etc/apache2/mods-enabled/mpm_worker.load \
-    && rm /etc/apache2/mods-enabled/mpm_prefork.load
+# تعطيل MPMs المتعارضة مع تجاهل الأخطاء
+RUN a2dismod mpm_event mpm_worker 2>/dev/null || true
 
-# تفعيل mpm_prefork فقط
-RUN a2enmod mpm_prefork
-
-# تفعيل mod_rewrite
-RUN a2enmod rewrite
+# تفعيل mpm_prefork و mod_rewrite
+RUN a2enmod mpm_prefork rewrite
 
 # نسخ الملفات
 COPY . /var/www/html
