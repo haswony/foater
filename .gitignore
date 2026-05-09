@@ -1,0 +1,25 @@
+# قاعدة البيانات (SQLite)
+database/data.sqlite*
+database/.installed
+database/error.log
+
+# ملفات التثبيت
+install.php
+
+# ملفات مؤقتة
+cookies.txt
+login.html
+*.log
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# PHP Composer (إذا استُخدم مستقبلاً)
+/vendor/
+composer.lock

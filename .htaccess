@@ -1,0 +1,12 @@
+# لمن يضع المشروع في الجذر، يعيد التوجيه إلى مجلد public
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^$ public/ [L]
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+# حماية المجلدات الحساسة
+<FilesMatch "\.(sqlite|sqlite-journal|sql)$">
+    Require all denied
+</FilesMatch>

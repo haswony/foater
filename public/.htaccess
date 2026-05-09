@@ -1,0 +1,16 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    # تمرير كل الطلبات إلى index.php ما لم يكن الملف موجوداً
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ index.php [L,QSA]
+</IfModule>
+
+# منع عرض قائمة الملفات
+Options -Indexes
+
+# منع الوصول للملفات الحساسة
+<FilesMatch "\.(sqlite|sql|md|sh)$">
+    Require all denied
+</FilesMatch>
