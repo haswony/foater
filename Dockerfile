@@ -1,9 +1,12 @@
 FROM php:8.1-apache
 
-# تثبيت ملحقات PHP المطلوبة
+# تثبيت المكتبات المطلوبة
 RUN apt-get update && apt-get install -y \
     libsqlite3-dev \
-    && docker-php-ext-install pdo pdo_sqlite mbstring
+    libonig-dev \
+    libzip-dev \
+    zip \
+    && docker-php-ext-install pdo pdo_sqlite mbstring zip
 
 # تفعيل mod_rewrite
 RUN a2enmod rewrite
